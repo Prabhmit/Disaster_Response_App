@@ -14,7 +14,7 @@ The code is in Python 3.7.6. The ETL Pipeline Preparation and ML Pipeline Prepar
 
 # Project Motivation
 
-The primary motivations are to analyze disaster data from Figure Eight to build a machine learning model for an API that classifies disaster messages for appropriate disaster relief agency. The project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app also displays data visualizations. 
+The primary motivations are to analyze disaster data from Figure Eight to build a machine learning model for an API that classifies disaster messages for appropriate disaster relief agency. The project also includes a web app where an emergency worker can input a new message and get classification results in 36 categories. The web app also displays data visualizations. 
 
 # Project Components and File Descriptions
 
@@ -22,19 +22,21 @@ The datasets are messages.csv and categories.csv. The ETL Pipeline Preparation a
 
 The project has three components: 
 
-## 1. ETL Pipeline
+## ETL Pipeline
 
-The datasets were loaded, merged, cleaned and stored in a SQLite database. The code for this component is included in ETL Pipeline Preparation. 
+In this component the datasets were loaded, merged, cleaned and stored in a SQLite database. The code is in ETL Pipeline Preparation notebook. 
 
-## 2. ML Pipeline
+## ML Pipeline
 
-The data was loaded from SQLite database. The datset was then split in training and test sets. A text processing and machine learning pipeline was build to train and tune the model using GridSearchCV. The model output was evaluated and the final model was exported as a pickle file. 
+In this component the data is loaded from SQLite database. The datset is then split in training and test sets. A text processing and machine learning pipeline is build to train and tune the model using GridSearchCV. The model output is evaluated and the final model is exported as a pickle file. 
 
-The text was cleand and tokenized and transformed to tfidf score. Sklearn's Random Forest Multi Output Classifier was used to build a model to classify disaster messages on 36 categories. The code for this component is included in ML Pipeline Preparation.
+The text is cleand and tokenized and transformed to tfidf score. A tuned Sklearn's Random Forest Multi Output Classifier is used to build a model to classify disaster messages on 36 categories. The metric applied is f1 score. The code for this component is in ML Pipeline Preparation notebook.
 
 ## 3. Flask Web App
 
-The project includes a Flask Web App with Plotly data visualizations. The process_data.py script in data directory, includes modularised code to clean and store data in database named DisasterResponse. The datasets have been re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory, includes modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations.
+The project includes a Flask Web App with Plotly data visualizations. 
+
+The process_data.py script in data directory contains modularised code to clean and store data in database named DisasterResponse. The datasets in data directory are re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory contains modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations.
 
 # 4. Instructions
 
@@ -45,7 +47,7 @@ The project includes a Flask Web App with Plotly data visualizations. The proces
     - To run ML pipeline that trains classifier and saves
         `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
-2. Run the following command in the app's directory to run your web app.
+2. Run the following command in the app's directory to run the web app.
     `python run.py`
 
 # 5. Licensing, Authors and Acknowledgments
