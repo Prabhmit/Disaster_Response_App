@@ -25,12 +25,12 @@ from sklearn.neighbors import KNeighborsClassifier
 
 def load_data(database_filepath):
     conn = sqlite3.connect(database_filepath)
-    df = pd.read_sql("SELECT * from tidy_data", conn)
+    df = pd.read_sql("SELECT * from tidy_data", conn)      
     conn.close()
     
     # define features and label arrays
-    X = df.iloc[:,1]      #.values
-    y = df.iloc[:,3:]     #.values
+    X = df.iloc[:,1].values
+    y = df.iloc[:,3:].values
     category_names = list(df.iloc[:,3:].columns)
 
     return X, y, category_names
@@ -63,37 +63,32 @@ def tokenize(text):
 
 def build_model():
     
-    # Build a pipeline, Note: classes are imbalanced
+    # Build a pipeline, noted classes are imbalanced, used n_jobs = -1 to improve processing speeds
     pipeline = Pipeline([('vect', CountVectorizer(tokenizer=tokenize)),('tfidf',TfidfTransformer()), 
                      ('clf',MultiOutputClassifier(RandomForestClassifier(class_weight='balanced',n_jobs=-1)))])  
     
-    # Using grid search to find better parameters   # Make changes to this
-    parameters =  {#'vect__max_df': (0.2,0.3,0.5),
-               #'vect__ngram_range': ((1,1),(1,2),(2,2)),
-               #'tfidf__use_idf': (True, False),
-               #'clf__estimator__max_depth': [3,4,5],          # Keep this one
-               'clf__estimator__min_samples_split': [3,5]}     # CHANGE THIS
+    # hyperparameter tuning, using f1 score as scoring method   
+    parameters =  {'clf__estimator__max_depth': [3,4,5],          
+               'clf__estimator__min_samples_split': [3,5,7]}     
     
-    # Create grid search object
-    model = GridSearchCV(pipeline, param_grid=parameters) #,scoring='f1'
+    # Create best model based on grid search 
+    model = GridSearchCV(pipeline, param_grid=parameters ,scoring='f1_micro')
         
     return model
 
-
-def evaluate_model(model, X_test, y_test, category_names):
+def evaluate_model(model, X_test, y_test, category_names):                   
     
     # Predict on test data
     y_pred = model.predict(X_test)
    
-    #for i in range(0,36):
-    #    print('category:',category_names[i])
-    #    print(classification_report(y_test[:,i],y_pred[:,i]))
+    # Printing classification report
+    class_report = classification_report(y_test, y_pred, target_names=category_names)
+    print(class_report)
 
 
-def save_model(model, model_filepath):
-    pickled_filename = 'trained_model.pkl'
-    pickle.dump(model, open(model_filepath + pickled_filename, 'wb'))
-
+def save_model(model, model_filepath):     # Saving pickled file
+    pickle.dump(model, open(model_filepath, 'wb'))
+    
 
 def main():
     if len(sys.argv) == 3:

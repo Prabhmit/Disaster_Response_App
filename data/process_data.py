@@ -56,7 +56,7 @@ def clean_data(df):
 def save_data(df, database_filepath):
     
     # load to database
-    engine = create_engine('sqlite:///'+ database_filepath)
+    engine = create_engine('sqlite:///{}' .format(database_filepath))
     df.to_sql('tidy_data', engine, if_exists='replace', index=False) 
 
 
