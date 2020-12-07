@@ -1,4 +1,4 @@
-# Udacity---Disaster-Response-Project
+# Udacity-Disaster-Response-Project
 
 # Table of Contents
 
