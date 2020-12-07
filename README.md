@@ -9,7 +9,7 @@
 
 # Installations and package requirement
 
-The code is in Python 3.7.6. The ETL Pipeline Preparation and ML Pipeline Preparation are Jupyter notebooks. The process_data.py, train_classifier.py and run.py are python scripts.The Python libraries applied are sys, nltk, sqlite3, numpy, pandas, pickle sqlachemy and sklearn. 
+The code is in Python 3.7.6. The ETL Pipeline Preparation and ML Pipeline Preparation are Jupyter notebooks. The process_data.py, train_classifier.py and run.py are python scripts.The Python libraries applied are sys, nltk, sqlite3, numpy, pandas, pickle, sqlachemy and sklearn. 
 
 # Project Motivation
 
@@ -17,17 +17,24 @@ The primary motivations are to analyze disaster data from Figure Eight to build 
 
 # Project Components and File Descriptions
 
-The datasets are messages.csv and categories.csv. The ETL Pipeline Preparation and ML Pipeline Preparation are Jupyter notebooks used to construct data cleaning and machine learning pipelines
+The datasets are messages.csv and categories.csv. The ETL Pipeline Preparation and ML Pipeline Preparation are Jupyter notebooks used to construct data cleaning and machine learning pipelines.
 
 The project has three components: 
 
 ## 1. ETL Pipeline
 
+The datasets were loaded, merged, cleaned and stored in a SQLite database.
+
 ## 2. ML Pipeline
+
+The data was loaded from SQLite database.  The datset was then split in training and test sets. A text processing and machine learning pipeline was build to train and tune the model using GridSearchCV. The model output was evaluated and the final model was exported as a pickle file.
 
 ## 3. Flask Web App
 
 # Licensing, Authors and Acknowledgments
 
-Introduction to Data Science, Data Scientist Nanodegree Program, Udacity, 
-https://www.udacity.com/course/data-scientist-nanodegree--nd025
+Introduction to Data Science, Data Scientist Nanodegree Program, Udacity, https://www.udacity.com/course/data-scientist-nanodegree--nd025
+
+Figure Eight, Appen, https://appen.com/
+
+scikit-learn - sk.learn.ensemble.RandomForestClassifier, https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
