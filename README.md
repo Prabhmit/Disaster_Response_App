@@ -32,7 +32,7 @@ In this component the data is loaded from SQLite database. The datset is then sp
 
 The text is cleand and tokenized and transformed to tfidf score. A tuned Sklearn's Random Forest Multi Output Classifier is used to build a model to classify disaster messages on 36 categories. The metric applied is f1 score. The code for this component is in ML Pipeline Preparation notebook.
 
-## 3. Flask Web App
+## Flask Web App
 
 The project includes a Flask Web App with Plotly data visualizations. 
 
