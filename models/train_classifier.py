@@ -24,6 +24,15 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 def load_data(database_filepath):
+
+    '''
+        Function that takes a table from database and returns array of messages and categories
+
+        Input: database_filepath: The path of sql database
+        Output: X: Messages, y: Categories, category_names: Labels for categories
+
+        '''
+
     conn = sqlite3.connect(database_filepath)
     df = pd.read_sql("SELECT * from tidy_data", conn)      
     conn.close()
@@ -36,6 +45,15 @@ def load_data(database_filepath):
     return X, y, category_names
 
 def tokenize(text):
+
+    '''
+        Function that takes a text, cleans and lemmatizes it and returns clean tokens
+
+        Input: text: array of messages
+        Output: clean tokens : clean and lemmatized tokens
+
+        '''
+
     # Remove punctuation
     text = re.sub(r"[^a-zA-Z0-9]"," ",text)
     
@@ -62,7 +80,15 @@ def tokenize(text):
     return clean_tokens
 
 def build_model():
-    
+
+    '''
+       Function that uses a ML pipeline and grid search to return the best model
+
+       Input: -
+       Output: model: best classification model
+
+       '''
+
     # Build a pipeline, noted classes are imbalanced, used n_jobs = -1 to improve processing speeds
     pipeline = Pipeline([('vect', CountVectorizer(tokenizer=tokenize)),('tfidf',TfidfTransformer()), 
                      ('clf',MultiOutputClassifier(RandomForestClassifier(class_weight='balanced',n_jobs=-1)))])  
@@ -76,8 +102,16 @@ def build_model():
         
     return model
 
-def evaluate_model(model, X_test, y_test, category_names):                   
-    
+def evaluate_model(model, X_test, y_test, category_names):
+
+    '''
+        Function that takes the model, X_test, y_test, and category names to evaluate the model and print classification report
+
+        Input: model: best model from build_model(), X_test: testing set, y_test: test set categories, category_names: labels for categories
+        Output: classification report: classification report for y_test vs predicted values
+
+        '''
+
     # Predict on test data
     y_pred = model.predict(X_test)
    
@@ -87,6 +121,15 @@ def evaluate_model(model, X_test, y_test, category_names):
 
 
 def save_model(model, model_filepath):     # Saving pickled file
+
+    '''
+        Function that takes the model and the model file path and saves it as a pickled file
+
+        Input: model: best model from build_model(), model_filepath: file path of the model
+        Output: saves the model as pickled file
+
+        '''
+
     pickle.dump(model, open(model_filepath, 'wb'))
     
 
