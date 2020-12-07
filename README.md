@@ -30,14 +30,16 @@ In this component the datasets were loaded, merged, cleaned and stored in a SQLi
 
 In this component the data is loaded from SQLite database. The datset is then split in training and test sets. A text processing and machine learning pipeline is build to train and tune the model using GridSearchCV. The model output is evaluated and the final model is exported as a pickle file. 
 
-The text is cleand and tokenized and transformed to tfidf score. A tuned Sklearn's Random Forest Multi Output Classifier is used to build a model to classify disaster messages on 36 categories. The metric applied is f1 score. The code for this component is in ML Pipeline Preparation notebook.
+The text is cleand and tokenized and transformed to tfidf score. A tuned Sklearn's Random Forest Multi Output Classifier is used to build a model to classify disaster messages on 36 categories. The code for this component is in ML Pipeline Preparation notebook.
+
+The dataset is imbalanced with several categories have low count. False negatives would result in people not receiving assistance whereas false positives would result in in-efficient resource usage. To balance between the two to achieve high recall (to minimize false negatives) and a high precision (to minimize false positives), the metric applied is f1 score.
 
 ## Flask Web App
 
 The project includes a Flask Web App with Plotly data visualizations. 
 
 The process_data.py script in data directory contains modularised code to clean and store data in database named DisasterResponse. The datasets in data directory are re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory contains modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations. Below are images of the web app classifier and visualisations. <br />
-
+<br />
 
 ![category classifier](https://github.com/Prabhmit/Udacity-Disaster-Response-Project/blob/main/app/Capture.PNG) <br />
 
