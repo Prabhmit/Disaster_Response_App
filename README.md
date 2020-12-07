@@ -36,9 +36,12 @@ The text is cleand and tokenized and transformed to tfidf score. A tuned Sklearn
 
 The project includes a Flask Web App with Plotly data visualizations. 
 
-The process_data.py script in data directory contains modularised code to clean and store data in database named DisasterResponse. The datasets in data directory are re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory contains modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations.
+The process_data.py script in data directory contains modularised code to clean and store data in database named DisasterResponse. The datasets in data directory are re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory contains modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations. Below are images of the web app classifier and visualisations. <br />
 
-![app screenshot](path-to-image-here)
+
+![category classifier](https://github.com/Prabhmit/Udacity-Disaster-Response-Project/blob/main/app/Capture.PNG) <br />
+
+![visualisations](https://github.com/Prabhmit/Udacity-Disaster-Response-Project/blob/main/app/Capture2.PNG) <br />
 
 # 4. Instructions
 
