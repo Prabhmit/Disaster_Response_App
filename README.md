@@ -31,6 +31,8 @@ The data was loaded from SQLite database.  The datset was then split in training
 
 ## 3. Flask Web App
 
+The project includes a Flask Web App with Plotly data visualizations.
+
 # Licensing, Authors and Acknowledgments
 
 Introduction to Data Science, Data Scientist Nanodegree Program, Udacity, https://www.udacity.com/course/data-scientist-nanodegree--nd025
