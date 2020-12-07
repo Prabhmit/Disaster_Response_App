@@ -38,6 +38,8 @@ The project includes a Flask Web App with Plotly data visualizations.
 
 The process_data.py script in data directory contains modularised code to clean and store data in database named DisasterResponse. The datasets in data directory are re-named disaster_messages.csv and disaster_categories.csv. The train_classifier.py script in models directory contains modularised code to run the Machine Learning pipeline that trains classifier model and saves it as a pickle file. The run.py script in app directory contains relevant code to launch the web app and data visualizations.
 
+![app screenshot](path-to-image-here)
+
 # 4. Instructions
 
 1. Run the following commands in the project's root directory to set up your database and model.
